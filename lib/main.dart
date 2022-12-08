@@ -4,7 +4,15 @@ void main() {
   runApp(HomePage());
 }
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int level = 0;
+
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -24,10 +32,10 @@ class HomePage extends StatelessWidget {
               const Center(
                   child: CircleAvatar(
                       backgroundImage: AssetImage('assets/20.jpeg'),
-                      radius: 40.0)),
-             const Divider(
-                color: Colors.white,
-                height: 30.0,
+                      radius: 35.0)),
+              const Divider(
+                color: Colors.grey,
+                height: 35.0,
               ),
              const Text(
                 'Name',
@@ -54,8 +62,8 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 10.0),
-              const Text(
-                'Last Year',
+               Text(
+                '$level',
                 style: TextStyle(
                   color: Colors.amberAccent,
                   fontSize: 25.0,
@@ -85,7 +93,11 @@ class HomePage extends StatelessWidget {
         ),
         floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.grey[600],
-          onPressed: () {},
+          onPressed: () {
+            setState(() {
+              level++;
+            });
+          },
           child: const Icon(Icons.add),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
